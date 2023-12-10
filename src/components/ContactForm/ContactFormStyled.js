@@ -14,3 +14,8 @@ export const FormBtn = styled.button`
   color: whitesmoke;
 `;
 
+export const FindInput = styled.input`
+  border-radius: 2px;
+  color: whitesmoke;
+  margin-left: 8px;
+`;

@@ -1,30 +1,16 @@
-import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { nanoid } from 'nanoid';
-import { FormBtn, FormStyle } from './ContactFormStyled';
-import { addContact, getContacts } from '../../redux/contactslice';
+import { nanoid } from "nanoid";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { addContact, getContacts } from "redux/contactSlice";
+import { FindInput, FormBtn, FormStyle } from "./ContactFormStyled";
 
-const ContactForm = () => {
+
+export const ContactForm = () => {
+  const contacts = useSelector(getContacts);
+  const dispatch = useDispatch();
+
   const [contactName, setContactName] = useState('');
   const [number, setNumber] = useState('');
-  const dispatch = useDispatch();
-  const contacts = useSelector(getContacts);
-
-  const handleChange = evt => {
-    const { value, name } = evt.target;
-
-    switch (name) {
-      case 'contactName':
-        setContactName(value);
-        break;
-      case 'number':
-        setNumber(value);
-        break;
-
-      default:
-        return;
-    }
-  };
 
   const handleSubmit = evt => {
     evt.preventDefault();
@@ -45,23 +31,40 @@ const ContactForm = () => {
     setNumber('');
   };
 
+  const handleChange = evt => {
+    const { value, name } = evt.target;
+
+    switch (name) {
+      case 'name':
+        setContactName(value);
+        break;
+      case 'number':
+        setNumber(value);
+        break;
+
+      default:
+        return;
+    }
+  };
+
   return (
     <FormStyle onSubmit={handleSubmit}>
       <label>
-        Name:
-        <input
+        Name
+        <FindInput
           type="text"
-          name="contactName"
+          name="name"
           value={contactName}
           onChange={handleChange}
           pattern="^[a-zA-Zа-яА-Я]+(([' \-][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-          title="Name may contain only letters, apostrophe, dash and spaces."
+          title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
           required
         />
       </label>
+
       <label>
-        Number:
-        <input
+        Number
+        <FindInput
           type="tel"
           name="number"
           value={number}
@@ -71,9 +74,8 @@ const ContactForm = () => {
           required
         />
       </label>
-      <FormBtn type="submit">Add Contact</FormBtn>
+
+      <FormBtn type="submit">Add contact</FormBtn>
     </FormStyle>
   );
 };
-
-export default ContactForm;

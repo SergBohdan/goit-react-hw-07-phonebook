@@ -1,16 +1,18 @@
-import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { deleteContact, getContacts } from '../../redux/contactslice';
-import { ClearBtn, List, ListBtn, ListItem } from './ContactListStyled';
-import { getFilter } from 'redux/filterSlice'; 
+import { useDispatch, useSelector } from 'react-redux';
+import { deleteContact, getContacts } from 'redux/contactSlice';
 
-const ContactList = ({ onClearContacts }) => {
+import { getFilter } from 'redux/filterSlice';
+import { List, ListBtn, ListItem } from './ContactListStyled';
+
+
+export const ContactsList = () => {
+  const dispatch = useDispatch();
   const contacts = useSelector(getContacts);
   const filtered = useSelector(getFilter);
-  const dispatch = useDispatch();
 
+  const normalizedFilter = filtered.toLowerCase();
   const filteredContacts = contacts.filter(({ name }) =>
-    name.toLowerCase().includes(filtered.toLowerCase())
+    name.toLowerCase().includes(normalizedFilter)
   );
 
   return (
@@ -25,9 +27,6 @@ const ContactList = ({ onClearContacts }) => {
           </ListBtn>
         </ListItem>
       ))}
-      <ClearBtn onClick={onClearContacts}>Clear contacts</ClearBtn>
     </List>
   );
 };
-
-export default ContactList;
