@@ -1,19 +1,22 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteContact, getContacts } from 'redux/contactSlice';
-
-import { getFilter } from 'redux/filterSlice';
+import { deleteContact, fetchContacts } from 'redux/operations';
+import { selectContacts, selectStatusFilter } from 'redux/selectors';
 import { List, ListBtn, ListItem } from './ContactListStyled';
+import { useEffect } from 'react';
 
-
-export const ContactsList = () => {
+const ContactList = () => {
   const dispatch = useDispatch();
-  const contacts = useSelector(getContacts);
-  const filtered = useSelector(getFilter);
+  const contacts = useSelector(selectContacts);
+  const filtered = useSelector(selectStatusFilter);
 
   const normalizedFilter = filtered.toLowerCase();
   const filteredContacts = contacts.filter(({ name }) =>
     name.toLowerCase().includes(normalizedFilter)
   );
+
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
 
   return (
     <List>
@@ -30,3 +33,5 @@ export const ContactsList = () => {
     </List>
   );
 };
+
+export default ContactList;

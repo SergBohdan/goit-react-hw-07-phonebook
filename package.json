@@ -10,6 +10,7 @@
     "@testing-library/jest-dom": "^5.16.3",
     "@testing-library/react": "^12.1.4",
     "@testing-library/user-event": "^13.5.0",
+    "axios": "^1.6.2",
     "babel-preset-react-app": "^10.0.1",
     "component": "^1.1.0",
     "formic": "^0.0.10",
@@ -24,6 +25,7 @@
     "redux": "^4.2.1",
     "redux-devtools-extension": "^2.13.9",
     "redux-persist": "^6.0.0",
+    "redux-selector": "^0.2.0",
     "styled-components": "^6.1.0",
     "web-vitals": "^2.1.3"
   },
