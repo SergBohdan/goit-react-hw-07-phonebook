@@ -4,7 +4,7 @@ import  ContactList  from 'components/ContactList/ContactList';
 import { GlobalStyle } from 'components/GlobalStyles';
 
 
-export const App = () => {
+const App = () => {
   return (
     <div>
       <h1>Phonebook</h1>
@@ -17,3 +17,5 @@ export const App = () => {
     </div>
   );
 };
+
+export default App;

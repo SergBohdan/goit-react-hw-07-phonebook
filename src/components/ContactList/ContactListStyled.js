@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const List = styled.ul`
   display: flex;
   flex-direction: column;
-  width: 350px;
+  width: 400px;
   gap: 15px;
   border: 3px solid black;
   padding: 10px;
@@ -22,4 +22,10 @@ export const ListBtn = styled.button`
   background-color: yellow;
   color: brown;
 `;
+
+export const ListName = styled.span`
+ margin-right: 20px;
+ font-weight: bold;
+`;
+
 
